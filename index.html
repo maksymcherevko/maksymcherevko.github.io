@@ -4,9 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        p {margin: 3px;}
+        body {padding: 5px 15px;}
+        h1 {margin: 7px 0 15px 0;}
+        p {margin: 3px 0;}
+        p.browser-version {margin-top: 25px;}
     </style>
 
+    <script src="/js/bv.js"></script>
     <script>
         var Message = {
             set: function (content, status) {
@@ -23,7 +27,7 @@
 
                 var p = document.createElement('p');
                 p.innerHTML = content + ' -- ' + span.outerHTML;
-                document.body.appendChild(p);
+                document.body.getElementsByClassName('list')[0].appendChild(p);
             }
         }
 
@@ -32,6 +36,8 @@
             Message.set('SeviceWorker', 'serviceWorker' in navigator);
             Message.set('Notification', 'Notification' in window);
             Message.set('History API', window.history && history.pushState);
+
+            document.body.getElementsByClassName('browser-version')[0].innerHTML = navigator.browserVersion.get();
         });
     </script>
 
@@ -40,6 +46,8 @@
 <body>
 
 <h1>Browser support (Live Output)</h1>
+<p class="list"></p>
+<p class="browser-version"></p>
 
 </body>
 

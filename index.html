@@ -1,0 +1,44 @@
+<html>
+<head>
+
+    <style>
+        p {margin: 3px;}
+    </style>
+
+    <script>
+        var Message = {
+            set: function (content, status) {
+                var span = document.createElement('span');
+
+                span.style.fontWeight = 'bold';
+                if (status) {
+                    span.style.color = 'green';
+                    span.innerHTML = 'supported';
+                } else {
+                    span.style.color = 'red';
+                    span.innerHTML = 'not supported';
+                }
+
+                var p = document.createElement('p');
+                p.innerHTML = content + ' -- ' + span.outerHTML;
+                document.body.appendChild(p);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            Message.set('PaymentRequest (Credit Cards)', 'PaymentRequest' in window);
+            Message.set('SeviceWorker', 'serviceWorker' in navigator);
+            Message.set('Notification', 'Notification' in window);
+            Message.set('History API', window.history && history.pushState);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<h1>Browser support (Live Output)</h1>
+
+</body>
+
+</html>
